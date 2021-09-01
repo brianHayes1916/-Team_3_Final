@@ -7,7 +7,48 @@ public class Employee {
 	int employeeId;
 	String firstName;
 	String lastName;
+	String email;
+	String performance;
+	String phone;
+	String benefitId;
+	int step;
+	int grade;
+	int salaried;
 	
+	
+
+	public String getBenefitId() {
+		return benefitId;
+	}
+
+	public void setBenefitId(String benefitId) {
+		this.benefitId = benefitId;
+	}
+
+	public int getStep() {
+		return step;
+	}
+
+	public void setStep(int step) {
+		this.step = step;
+	}
+
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+
+	public int getSalaried() {
+		return salaried;
+	}
+
+	public void setSalaried(int salaried) {
+		this.salaried = salaried;
+	}
+
 	/**
 	 * Default constructor
 	 */
@@ -73,6 +114,29 @@ public class Employee {
 		this.lastName = lastName;
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPerformance() {
+		return performance;
+	}
+
+	public void setPerformance(String performance) {
+		this.performance = performance;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	/**
 	 * Override the default toString with a formatted representation of the 
 	 * attributes. Uses {@code String.format()} to pad the string so that multiple
