@@ -1,0 +1,72 @@
+public void deleteAttendance(int Id) {
+			final String DELETE    = "DELETE FROM attendance WHERE emp_id = ?";
+			try (Connection c = db.getConnection();
+					PreparedStatement ps = c.prepareStatement(DELETE);) {
+				ps.setInt(1, Id);
+			
+				ps.executeUpdate();
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
+	
+	public List<Attendance> readAllAttendance() {
+		String query= "SELECT * from attendance ";
+		List<Attendance> attList = new ArrayList<Attendance>();
+		try (Connection c = db.getConnection();
+				PreparedStatement ps = c.prepareStatement(query);) {
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				attList.add(new Attendance(rs.getInt(1), 
+										   rs.getInt(2), 
+										   rs.getInt(3),
+										   rs.getInt(4),
+										   rs.getInt(5)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return attList;
+	}
+	
+	public void updateAllAttendance( int present, int tardy, int absents, int eTardys, int eAbsent, int id) {
+		final String UPDATE    = "UPDATE attendance  SET  absents = ?, tardy = ?, excused_tardys = ?, excused_absents = ? WHERE emp_id = ?";
+		try (Connection c = db.getConnection();
+				PreparedStatement ps = c.prepareStatement(UPDATE);) {
+			ps.setInt(1, id);
+			ps.setInt(2, present);
+			ps.setInt(3, tardy);
+			ps.setInt(4,absents);
+			ps.setInt(5, eTardys);
+			ps.setInt(6, eAbsent);
+			
+			ps.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	public void createBenefit(int id, int tardys , int absents, int eTardy , int eAbsent ) {
+		final String CREATE    = "INSERT INTO attendance (EMP_ID, TARDY, ABSENTS, EXCUSED_TARDY, EXCUSED_ABSENTS) VALUES (?,?,?,?,?,?)";
+		try (Connection c = db.getConnection();
+				PreparedStatement ps = c.prepareStatement(CREATE);) {
+			ps.setInt(1, id);
+			ps.setInt(2, tardys);
+			ps.setInt(3, absents);
+			ps.setInt(4, eTardy);
+			ps.setDouble(5, eAbsent);
+			
+			ps.executeUpdate();
+	    }
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+}
+	
